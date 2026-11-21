@@ -1,0 +1,15 @@
+<!doctype html><html lang="vi"><head><meta charset="utf-8"><title>{{ system }}</title><link rel="stylesheet" href="/static/style.css"></head>
+<body><main class="wrap"><a href="/">← Trang chủ</a><h1>{{ system }}</h1><p>Form mô phỏng kiểm tra điều kiện đăng ký.</p>
+<form id="check"><label>Mã sinh viên <input name="studentId" value="SV001" required></label>
+<label>Mã học phần <input name="courseId" value="RIPT1305" required></label><button>Kiểm tra điều kiện</button></form>
+<div id="result" class="result">Kết quả sẽ hiển thị ở đây.</div><p class="note">Client gửi dữ liệu đến API dùng chung, không chứa logic kiểm tra riêng.</p></main>
+<script>
+document.querySelector("#check").addEventListener("submit", async e => {
+ e.preventDefault(); const f=new FormData(e.target);
+ const response=await fetch("/api/eligibility",{method:"POST",headers:{"Content-Type":"application/json"},
+ body:JSON.stringify({studentId:f.get("studentId"),courseId:f.get("courseId")})});
+ const data=await response.json(); const box=document.querySelector("#result");
+ box.className="result "+(data.eligible?"ok":"bad");
+ box.textContent=`${data.studentId||""} / ${data.courseId||""}: ${data.message} [${data.code}]`;
+});
+</script></body></html>

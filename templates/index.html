@@ -1,0 +1,5 @@
+<!doctype html><html lang="vi"><head><meta charset="utf-8"><title>Mô phỏng tích hợp PTIT</title><link rel="stylesheet" href="/static/style.css"></head>
+<body><main class="wrap"><h1>Mô phỏng Shared Business Service</h1><p>Dịch vụ kiểm tra điều kiện đăng ký học phần dùng chung.</p>
+<div class="cards"><a class="card" href="/portal"><h2>Cổng sinh viên</h2><p>Hệ thống A — gọi API nghiệp vụ chung</p></a>
+<a class="card" href="/advisor"><h2>Cố vấn học tập</h2><p>Hệ thống B — gọi cùng API nghiệp vụ</p></a></div>
+<section><h2>Kiến trúc</h2><p>Hai hệ thống độc lập không tự xử lý quy tắc. Cả hai gọi POST <code>/api/eligibility</code> trên Shared Business Service.</p></section></main></body></html>
